@@ -1,9 +1,23 @@
 import pandas as pd
 import streamlit as st
+import openpyxl as px
+import markdown as md
 
+header = st.container()
+dataset = st.container()
+
+with header:
+    st.title("Infor LN New Users")
+    st.image("userInvite.png")
+    st.divider()
 
 file_path = "NewUsers_2025.xlsx"
-column_name = st.text_input("Enter the training name")
+#column_name = st.text_input("Enter the training name")
+
+column_name = pd.read_excel('trainingName.xlsx')
+
+role = st.selectbox('Select a role', column_name, index = None,
+    placeholder="Select training name",)
 
 def find_last_empty_row(file_path, column_name):
     # Read the Excel file
