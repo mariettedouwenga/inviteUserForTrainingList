@@ -14,6 +14,9 @@ with header:
 file_path = "NewUsers_2025.xlsx"
 training_names = pd.read_excel("trainingName.xlsx")
 
+#loop through this sheet to find column name selected in the selection box
+training_name_sh = file_path.active
+
 #Select the training name
 column_name = st.selectbox('Select the training name', training_names, index = None,
     placeholder="Select training name",)
@@ -51,3 +54,17 @@ except IndexError:
 
 
 #Add the training_date to the first empty row of the training name column
+for j in range(1, training_name_sh.max_column+1): 
+
+        #Iterate through rows in excel sheet
+        for i in range(1, training_name_sh.max_row+1): 
+            cell_obj = training_name_sh.cell(1, column=i)
+                 
+            if cell_obj.value == column_name.value:
+                if training_name_sh.cell(i,j).value == "":
+                    training_name_sh.cell(i,j).value == training_date
+
+                                                                          
+                                                
+                   
+    
